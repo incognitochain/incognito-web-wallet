@@ -8,12 +8,12 @@ export function clearPassword() {
   storage.removeItem(CONSTANT_KEYS.PASSPHRASE_KEY);
 }
 
-export function getPassphrase() {
+export function getPassphrase(): string {
   try {
     let pass: string = storage.getItem(CONSTANT_KEYS.PASSPHRASE_KEY) || '';
 
     if (!pass) {
-      return;
+      return '';
     }
 
     pass = CryptoJS.AES.decrypt(
@@ -21,10 +21,10 @@ export function getPassphrase() {
       CONSTANT_CONFIGS.PASSWORD_SECRET_KEY
     ).toString(CryptoJS.enc.Utf8);
     const [password, expired] = pass.split(':');
-    if (!password || !expired) return;
+    if (!password || !expired) return '';
     return password;
   } catch (e) {
-    return;
+    return '';
   }
 }
 
