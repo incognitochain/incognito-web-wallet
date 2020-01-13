@@ -46,7 +46,7 @@ const App: React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
       <Header />
       <div className="app-content">
         <Route exact path="/" component={Wallet} />
-        <Route exact paht="/settings" component={Settings} />
+        <Route exact path="/wallet/settings" component={Settings} />
       </div>
     </div>
   );

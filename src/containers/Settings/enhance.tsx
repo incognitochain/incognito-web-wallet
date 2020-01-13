@@ -3,7 +3,7 @@ import { compose } from "recompose";
 
 interface IProps {}
 
-const enhance = (WrappedComponent: any) => (props: IProps) => {
+const enhance = (WrappedComponent: React.FunctionComponent) => (props: IProps) => {
   return <WrappedComponent {...props} />;
 };
 

@@ -5,6 +5,13 @@ export interface II18n {
   settings: {
     helmet: string;
   };
+  header: {
+    label: string;
+  };
+  accounts: {
+    import: string;
+    create: string;
+  };
 }
 export const translateByLanguage = (language: string) => {
   switch (language) {
