@@ -1,19 +1,19 @@
-import * as React from 'react'
-import { Route } from 'react-router-dom';
-import Header from 'src/components/Header';
-import Wallet from 'src/containers/Wallet';
-import loadWASM from 'src/services/wasm';
-import FullScreenLoading from 'src/components/Loading/FullScreenLoading';
-import { loadWalletAction } from 'src/redux/actions';
-import { RootState } from 'src/redux/reducers';
-import { connect } from 'react-redux';
-
+import * as React from "react";
+import { Route } from "react-router-dom";
+import Header from "src/components/Header";
+import Wallet from "src/containers/Wallet";
+import loadWASM from "src/services/wasm";
+import FullScreenLoading from "src/components/Loading/FullScreenLoading";
+import { loadWalletAction } from "src/redux/actions";
+import { RootState } from "src/redux/reducers";
+import { connect } from "react-redux";
+import Settings from "src/containers/Settings";
 type Props = {
-  loadWallet: Function,
-  wallet: any,
-}
+  loadWallet: Function;
+  wallet: any;
+};
 
-const App:React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
+const App: React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
   const [loadedWASM, setLoadedWASM] = React.useState(false);
 
   React.useEffect(() => {
@@ -29,7 +29,7 @@ const App:React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
   React.useEffect(() => {
     const loadAccounts = async () => {
       const accounts = await wallet.listAccount();
-      console.debug('ACCOUNTS', accounts);
+      console.debug("ACCOUNTS", accounts);
     };
 
     if (wallet) {
@@ -46,15 +46,16 @@ const App:React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
       <Header />
       <div className="app-content">
         <Route exact path="/" component={Wallet} />
+        <Route exact paht="/settings" component={Settings} />
       </div>
     </div>
-  )
+  );
 };
 
 const mapStateToProps = (state: RootState) => ({
   loading: state.walletReducer.loading,
   wallet: state.walletReducer.wallet,
-  error: state.walletReducer.error,
+  error: state.walletReducer.error
 });
 
 const mapDispatchToProps = {
