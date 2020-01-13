@@ -1,14 +1,17 @@
-import { put, takeEvery, call } from 'redux-saga/effects'
+import { put, takeEvery, call } from "redux-saga/effects";
 import {
-  CREATE_WALLET, CREATE_WALLET_FAILED,
+  CREATE_WALLET,
+  CREATE_WALLET_FAILED,
   CREATE_WALLET_SUCCESS,
   LOAD_WALLET,
   LOAD_WALLET_FAILED,
   LOAD_WALLET_SUCCESS
-} from 'src/redux/actionTypes';
-import { initWallet, loadWallet } from 'src/services/wallet';
-
-
+} from "src/redux/actionTypes";
+import { initWallet, loadWallet } from "src/services/wallet";
+import {
+  ACTION_FETCH_ACCOUNTS,
+  actionFetchAccounts
+} from "src/redux/actions/accounts";
 
 export function* loadWalletEffect() {
   try {
@@ -35,4 +38,5 @@ export function* createWalletEffect() {
 export default function* rootSaga() {
   yield takeEvery(LOAD_WALLET, loadWalletEffect);
   yield takeEvery(CREATE_WALLET, createWalletEffect);
+  yield takeEvery(ACTION_FETCH_ACCOUNTS, actionFetchAccounts);
 }
