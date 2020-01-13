@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
+import { hot } from 'react-hot-loader/root';
 import Wallet from 'src/containers/Wallet';
 import Landing from 'src/containers/Landing';
 import loadWASM from 'src/services/wasm';
@@ -17,7 +18,9 @@ type Props = {
   wallet: any,
 }
 
-const App:React.FunctionComponent<Props> = ({ loading, creating, loadWallet }) => {
+const App:React.FunctionComponent<Props> = ({
+  loading, wallet, creating, loadWallet,
+}) => {
   const [loadedWASM, setLoadedWASM] = React.useState(false);
 
   React.useEffect(() => {
@@ -27,7 +30,9 @@ const App:React.FunctionComponent<Props> = ({ loading, creating, loadWallet }) =
       loadWallet();
     };
 
-    loadWebAssembly();
+    if (!wallet) {
+      loadWebAssembly();
+    }
   }, [loadWallet]);
 
   if (!loadedWASM || loading || creating) {
@@ -55,4 +60,4 @@ const mapDispatchToProps = {
   loadWallet: loadWalletAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default hot(connect(mapStateToProps, mapDispatchToProps)(App));
