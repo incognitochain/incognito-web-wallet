@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
-import pTokenReducer, { PTokenState } from './pToken'
+import bridgeTokenReducer, { BridgeTokenState } from './bridgeToken'
 import walletReducer, { WalletState } from './wallet';
 
 export interface RootState {
-  pTokenReducer: PTokenState,
+  bridgeTokenReducer: BridgeTokenState,
   walletReducer: WalletState,
 }
 
 const rootReducer = combineReducers({
-  pTokenReducer,
+  bridgeTokenReducer,
   walletReducer,
 });
 

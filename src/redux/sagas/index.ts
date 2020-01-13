@@ -4,9 +4,11 @@ import {
   CREATE_WALLET_SUCCESS,
   LOAD_WALLET,
   LOAD_WALLET_FAILED,
-  LOAD_WALLET_SUCCESS
+  LOAD_WALLET_SUCCESS,
+  GET_BRIDGE_TOKENS
 } from 'src/redux/actionTypes';
 import { initWallet, loadWallet } from 'src/services/wallet';
+import { getBridgeTokenListEffect } from 'src/redux/sagas/bridgeToken';
 
 
 
@@ -35,4 +37,5 @@ export function* createWalletEffect() {
 export default function* rootSaga() {
   yield takeEvery(LOAD_WALLET, loadWalletEffect);
   yield takeEvery(CREATE_WALLET, createWalletEffect);
+  yield takeEvery(GET_BRIDGE_TOKENS, getBridgeTokenListEffect);
 }

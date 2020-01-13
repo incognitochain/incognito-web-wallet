@@ -1,18 +1,18 @@
 import ReduxAction from 'src/models/action';
 import {
-  GET_BRIDGE_TOKENS,
-  GET_BRIDGE_TOKENS_SUCCESS,
-  GET_BRIDGE_TOKENS_FAILED,
+  GET_CHAIN_TOKENS,
+  GET_CHAIN_TOKENS_SUCCESS,
+  GET_CHAIN_TOKENS_FAILED,
 } from 'src/redux/actionTypes'
-import PToken from 'src/models/pToken';
+import ChainToken from 'src/models/chainToken';
 
-export type PTokenState = {
+export type ChainTokenState = {
   getting: boolean,
-  data: PToken[],
+  data: ChainToken[],
   error?: string | null,
 }
 
-const initialState: PTokenState = {
+const initialState: ChainTokenState = {
   getting: false,
   data: [],
   error: null,
@@ -20,19 +20,19 @@ const initialState: PTokenState = {
 
 const actions: any = {};
 
-actions[GET_BRIDGE_TOKENS] = (state: PTokenState) => ({
+actions[GET_CHAIN_TOKENS] = (state: ChainTokenState) => ({
   ...state,
   getting: true,
   error: null,
 });
 
-actions[GET_BRIDGE_TOKENS_SUCCESS] = (state: PTokenState, action: ReduxAction) => ({
+actions[GET_CHAIN_TOKENS_SUCCESS] = (state: ChainTokenState, action: ReduxAction) => ({
   ...state,
   getting: false,
   data: action.payload,
 });
 
-actions[GET_BRIDGE_TOKENS_FAILED] = (state: PTokenState, action: ReduxAction) => ({
+actions[GET_CHAIN_TOKENS_FAILED] = (state: ChainTokenState, action: ReduxAction) => ({
   ...state,
   getting: false,
   error: action.error

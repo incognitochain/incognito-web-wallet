@@ -1,6 +1,6 @@
-import APIPToken from './apiPToken';
+import ApiBridgeToken from './apiBridgeToken';
 
-class PToken {
+class BridgeToken {
   id: number;
   createdAt: number;
   updatedAt: number;
@@ -18,7 +18,7 @@ class PToken {
   verified: number;
   currencyType: number;
 
-  constructor(data: APIPToken) {
+  constructor(data: ApiBridgeToken) {
     this.id = data.ID;
     this.createdAt = data.CreatedAt;
     this.updatedAt = data.UpdatedAt;
@@ -38,4 +38,4 @@ class PToken {
   }
 }
 
-export default PToken;
+export default BridgeToken;

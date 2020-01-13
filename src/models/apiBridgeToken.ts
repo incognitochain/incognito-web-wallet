@@ -1,4 +1,4 @@
-type APIPToken = {
+type APIBridgeToken = {
   ID: number,
   CreatedAt: number,
   UpdatedAt: number,
@@ -17,4 +17,4 @@ type APIPToken = {
   CurrencyType: number,
 }
 
-export default APIPToken;
+export default APIBridgeToken;

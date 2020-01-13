@@ -1,21 +1,21 @@
-import PToken from 'src/models/pToken';
+import BridgeToken from 'src/models/bridgeToken';
 import ChainToken from 'src/models/chainToken';
 import api from 'src/services/api';
-import APIPToken from 'src/models/apiPToken';
+import APIBridgeToken from 'src/models/apiBridgeToken';
 
-let getTokenPromise: Promise<PToken[]> | null;
+let getTokenPromise: Promise<BridgeToken[]> | null;
 let getChainTokenPromise: Promise<ChainToken[]> | null;
 
 type ChainTokenResponse = {
   Tokens: ChainToken[],
 }
 
-export const getTokenList = () => {
+export const getBridgeTokenList = () => {
   if (!getTokenPromise) {
-    getTokenPromise = api.get<APIPToken[]>('ptoken/list')
+    getTokenPromise = api.get<APIBridgeToken[]>('ptoken/list')
       .then(res => {
         getTokenPromise = null;
-        return res.data.map((token: APIPToken) => new PToken(token));
+        return res.data.map((token: APIBridgeToken) => new BridgeToken(token));
       })
       .finally(() => {
         getTokenPromise = null;
