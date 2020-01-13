@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
+import { RootState } from "src/redux/reducers";
 
-export const templatesSelector = createSelector(
-  (state: any) => state.templates,
-  templates => templates
+export const accountsSelector = createSelector(
+  (state: RootState) => state.accountsReducer,
+  accounts => accounts
 );

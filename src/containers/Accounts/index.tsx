@@ -3,8 +3,10 @@ import { Styled } from "./styled";
 import Nav from "src/components/Nav";
 import { useSelector } from "react-redux";
 import { translateSelector } from "src/i18n";
-import importIcon from 'src/assets/images/import.svg';
-import createIcon from 'src/assets/images/plus.svg';
+import importIcon from "src/assets/images/import.svg";
+import createIcon from "src/assets/images/plus.svg";
+import withAccounts from "./enhance";
+import RenderAccounts from "./renderAccounts";
 
 interface IProps {}
 
@@ -26,24 +28,22 @@ const Action = (props: IPropsAction) => {
 };
 
 const Accounts = (props: IProps) => {
-  const { 
-    accounts
-  } = useSelector(translateSelector);
-  
+  const { accounts } = useSelector(translateSelector);
+
   return (
     <Styled className="accounts">
       <div className="hook">
         <Nav />
         <div className="actions">
-          <Action title={accounts.import} srcIcon={importIcon}/>
-          <Action title={accounts.create} srcIcon={createIcon}/>
+          <Action title={accounts.import} srcIcon={importIcon} />
+          <Action title={accounts.create} srcIcon={createIcon} />
         </div>
       </div>
       <div className="extra">
-
+        <RenderAccounts />
       </div>
     </Styled>
   );
 };
 
-export default Accounts;
+export default React.memo(withAccounts(Accounts));
