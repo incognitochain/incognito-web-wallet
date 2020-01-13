@@ -41,13 +41,13 @@ export function createAndSendNativeToken(
   paymentInfos: PaymentInfo[],
   fee = 0,
   isPrivacy = true,
-  accountName = ''
+  accountName = '',
 ) {
   const indexAccount = wallet.getAccountIndexByName(accountName);
   const infoStr = undefined;
   return wallet.MasterAccount.child[
     indexAccount
-    ].createAndSendNativeToken(paymentInfos, fee, isPrivacy, infoStr);
+  ].createAndSendNativeToken(paymentInfos, fee, isPrivacy, infoStr);
 }
 
 export function createSendPToken(

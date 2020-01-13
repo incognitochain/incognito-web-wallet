@@ -4,20 +4,16 @@ import randomBytes from 'randombytes';
 import AccountModel from 'src/models/account';
 import storage from 'src/services/storage';
 import { getPassphrase, savePassword } from 'src/services/password';
-import {getMaxShardNumber} from './rpc';
-import { CONSTANT_CONFIGS } from '../constants';
 import WebJSAccount from 'src/models/webJSAccount';
+import { getMaxShardNumber } from './rpc';
+import { CONSTANT_CONFIGS } from '../constants';
 
 const numOfAccount = 1;
 const walletName = 'wallet1';
 
 export async function loadListAccount(wallet: any) {
-  try {
-    const listAccountRaw = (await wallet.listAccount()) || [];
-    return listAccountRaw.map((account: WebJSAccount) => new AccountModel(account)) || [];
-  } catch (e) {
-    throw e;
-  }
+  const listAccountRaw = (await wallet.listAccount()) || [];
+  return listAccountRaw.map((account: WebJSAccount) => new AccountModel(account)) || [];
 }
 
 export async function loadWallet() {
@@ -27,7 +23,7 @@ export async function loadWallet() {
   Wallet.RpcClient = new RpcClient(
     CONSTANT_CONFIGS.MASTER_NODE_ADDRESS,
     '',
-    ''
+    '',
   );
   Wallet.ShardNumber = await getMaxShardNumber();
   const wallet = new Wallet();
@@ -37,38 +33,31 @@ export async function loadWallet() {
 }
 
 export async function initWallet() {
-  try {
-    savePassword(CONSTANT_CONFIGS.PASSPHRASE_WALLET_DEFAULT);
-    const passphrase = getPassphrase();
-    const wallet = new Wallet();
-    wallet.Storage = storage;
-    wallet.init(passphrase, numOfAccount, walletName, storage, null);
-    await wallet.save(passphrase);
-    return wallet;
-  } catch (e) {
-    throw e;
-  }
+  savePassword(CONSTANT_CONFIGS.PASSPHRASE_WALLET_DEFAULT);
+  const passphrase = getPassphrase();
+  const wallet = new Wallet();
+  wallet.init(passphrase, numOfAccount, walletName);
+  wallet.Storage = storage;
+  await wallet.save(passphrase);
+  return wallet;
 }
 
 export async function saveWallet(wallet: any) {
-  wallet.Storage = storage;
-  wallet.save(await getPassphrase());
+  wallet.save(getPassphrase());
 }
 
 export function deleteWallet(wallet: any) {
-  wallet.Storage = storage;
   return wallet.deleteWallet();
-}
-
-export async function loadHistoryByAccount(wallet: any, accountName: string) {
-  wallet.Storage = storage;
-  await updateStatusHistory(wallet).catch(() => console.warn('History statuses were not updated'));
-  return (await wallet.getHistoryByAccount(accountName)) || [];
 }
 
 export async function updateStatusHistory(wallet: any) {
   await wallet.updateStatusHistory();
   await saveWallet(wallet);
+}
+
+export async function loadHistoryByAccount(wallet: any, accountName: string) {
+  await updateStatusHistory(wallet).catch(() => console.warn('History statuses were not updated'));
+  return (await wallet.getHistoryByAccount(accountName)) || [];
 }
 
 export function clearCache(wallet: any) {

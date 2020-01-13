@@ -6,12 +6,6 @@ function getRpcClient() {
 }
 
 export async function getMaxShardNumber() {
-  let resp;
-  try {
-    resp = await getRpcClient().getMaxShardNumber();
-  } catch (e) {
-    throw e;
-  }
-
+  const resp = await getRpcClient().getMaxShardNumber();
   return resp.shardNumber;
 }

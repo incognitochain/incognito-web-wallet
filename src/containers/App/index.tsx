@@ -1,6 +1,5 @@
-import * as React from 'react'
+import * as React from 'react';
 import { Route } from 'react-router-dom';
-import Header from 'src/components/Header';
 import Wallet from 'src/containers/Wallet';
 import Landing from 'src/containers/Landing';
 import loadWASM from 'src/services/wasm';
@@ -37,13 +36,12 @@ const App:React.FunctionComponent<Props> = ({ loading, creating, loadWallet }) =
 
   return (
     <div className="App">
-      <Header />
       <div className="app-content">
         <Route exact path="/" component={Landing} />
         <Route exact path="/wallet" component={Wallet} />
       </div>
     </div>
-  )
+  );
 };
 
 const mapStateToProps = (state: RootState) => ({
@@ -54,7 +52,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  loadWallet: loadWalletAction
+  loadWallet: loadWalletAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PaymentInfo from './paymentInfo';
 import SubmitParams from './submitParams';
 

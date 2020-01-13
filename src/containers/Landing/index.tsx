@@ -1,9 +1,7 @@
-import * as React from 'react'
-import { loadWalletAction } from 'src/redux/actions';
-import { RootState } from 'src/redux/reducers';
-import { connect } from 'react-redux';
+import * as React from 'react';
+import Header from 'src/components/Header';
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 import Feature from './Feature';
 
 type Props = {
@@ -31,37 +29,24 @@ const features = [
   },
 ];
 
-const Landing: React.FunctionComponent<Props> = ({ loading, creating, loadWallet }) => {
-  return (
-    <div className={styles.landing}>
-      <h1 className={styles.title}>Go incognito</h1>
-      <h4 className={styles.desc}>A privacy-first alternative for all your crypto activities. Watch how it works</h4>
-      <div className={styles.features}>
-        {features.map(item => (
-          <Feature
-            key={item.label}
-            label={item.label}
-            desc={item.desc}
-            onClick={item.onClick}
-            icon="star"
-          />
-        ))}
-      </div>
+const Landing: React.FunctionComponent<Props> = () => (
+  <div className={styles.landing}>
+    <Header />
+    <h1 className={styles.title}>Go incognito</h1>
+    <h4 className={styles.desc}>
+      A privacy-first alternative for all your crypto activities. Watch how it works
+    </h4>
+    <div className={styles.features}>
+      {features.map((item) => (
+        <Feature
+          key={item.label}
+          label={item.label}
+          desc={item.desc}
+          onClick={item.onClick}
+        />
+      ))}
     </div>
-  )
-};
-
-const mapStateToProps = (state: RootState) => ({
-  creating: state.walletReducer.creating,
-  loading: state.walletReducer.loading,
-  wallet: state.walletReducer.wallet,
-  error: state.walletReducer.error,
-});
-
-const mapDispatchToProps = {
-  loadWallet: loadWalletAction
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  React.memo(Landing)
+  </div>
 );
+
+export default React.memo(Landing);

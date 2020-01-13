@@ -1,14 +1,12 @@
-import { put, takeEvery, call } from 'redux-saga/effects'
+import { put, takeEvery, call } from 'redux-saga/effects';
 import {
   CREATE_WALLET, CREATE_WALLET_FAILED,
   CREATE_WALLET_SUCCESS,
   LOAD_WALLET,
   LOAD_WALLET_FAILED,
-  LOAD_WALLET_SUCCESS
+  LOAD_WALLET_SUCCESS,
 } from 'src/redux/actionTypes';
 import { initWallet, loadWallet } from 'src/services/wallet';
-
-
 
 export function* loadWalletEffect() {
   try {

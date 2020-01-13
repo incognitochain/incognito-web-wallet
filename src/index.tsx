@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import AppRouter from 'src/router';
 import * as serviceWorker from 'src/serviceWorker';
 import store from 'src/redux';

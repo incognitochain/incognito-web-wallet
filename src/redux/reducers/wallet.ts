@@ -6,7 +6,7 @@ import {
   CREATE_WALLET,
   CREATE_WALLET_SUCCESS,
   CREATE_WALLET_FAILED,
-} from 'src/redux/actionTypes'
+} from 'src/redux/actionTypes';
 
 export type WalletState = {
   loading: boolean,
@@ -39,7 +39,7 @@ actions[LOAD_WALLET_SUCCESS] = (state: WalletState, action: ReduxAction) => ({
 actions[LOAD_WALLET_FAILED] = (state: WalletState, action: ReduxAction) => ({
   ...state,
   loading: false,
-  error: action.error
+  error: action.error,
 });
 
 actions[CREATE_WALLET] = (state: WalletState) => ({
@@ -58,7 +58,7 @@ actions[CREATE_WALLET_SUCCESS] = (state: WalletState, action: ReduxAction) => ({
 actions[CREATE_WALLET_FAILED] = (state: WalletState, action: ReduxAction) => ({
   ...state,
   creating: false,
-  error: action.error
+  error: action.error,
 });
 
 export default function (state = initialState, action: any) {
