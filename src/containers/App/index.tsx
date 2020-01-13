@@ -2,18 +2,23 @@ import * as React from 'react'
 import { Route } from 'react-router-dom';
 import Header from 'src/components/Header';
 import Wallet from 'src/containers/Wallet';
+import Landing from 'src/containers/Landing';
 import loadWASM from 'src/services/wasm';
 import FullScreenLoading from 'src/components/Loading/FullScreenLoading';
 import { loadWalletAction } from 'src/redux/actions';
 import { RootState } from 'src/redux/reducers';
 import { connect } from 'react-redux';
 
+import './index.scss';
+
 type Props = {
+  loading: boolean,
+  creating: boolean,
   loadWallet: Function,
   wallet: any,
 }
 
-const App:React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
+const App:React.FunctionComponent<Props> = ({ loading, creating, loadWallet }) => {
   const [loadedWASM, setLoadedWASM] = React.useState(false);
 
   React.useEffect(() => {
@@ -26,18 +31,7 @@ const App:React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
     loadWebAssembly();
   }, [loadWallet]);
 
-  React.useEffect(() => {
-    const loadAccounts = async () => {
-      const accounts = await wallet.listAccount();
-      console.debug('ACCOUNTS', accounts);
-    };
-
-    if (wallet) {
-      loadAccounts();
-    }
-  }, [wallet]);
-
-  if (!loadedWASM) {
+  if (!loadedWASM || loading || creating) {
     return <FullScreenLoading />;
   }
 
@@ -45,13 +39,15 @@ const App:React.FunctionComponent<Props> = ({ loadWallet, wallet }) => {
     <div className="App">
       <Header />
       <div className="app-content">
-        <Route exact path="/" component={Wallet} />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/wallet" component={Wallet} />
       </div>
     </div>
   )
 };
 
 const mapStateToProps = (state: RootState) => ({
+  creating: state.walletReducer.creating,
   loading: state.walletReducer.loading,
   wallet: state.walletReducer.wallet,
   error: state.walletReducer.error,
