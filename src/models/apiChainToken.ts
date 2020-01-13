@@ -1,7 +1,8 @@
 type APIChainToken = {
-  TokenName: string,
-  TokenID: string,
-  TokenSymbol: string,
+  Name: string,
+  ID: string,
+  Symbol: string,
+  Amount: number,
 }
 
 export default APIChainToken;

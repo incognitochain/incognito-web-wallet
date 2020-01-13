@@ -2,12 +2,13 @@ import BridgeToken from 'src/models/bridgeToken';
 import ChainToken from 'src/models/chainToken';
 import api from 'src/services/api';
 import APIBridgeToken from 'src/models/apiBridgeToken';
+import APIChainToken from 'src/models/apiChainToken';
 
 let getTokenPromise: Promise<BridgeToken[]> | null;
 let getChainTokenPromise: Promise<ChainToken[]> | null;
 
 type ChainTokenResponse = {
-  Tokens: ChainToken[],
+  Tokens: APIChainToken[],
 }
 
 export const getBridgeTokenList = () => {
@@ -29,7 +30,7 @@ export const getChainTokenList = () => {
   if (!getChainTokenPromise) {
     getChainTokenPromise = api.get<ChainTokenResponse>('/pcustomtoken/list-from-chain')
       .then(res => {
-        return res.data.Tokens;
+        return res.data.Tokens?.map((token: APIChainToken) => new ChainToken(token));
       })
       .finally(() => {
         getChainTokenPromise = null;
