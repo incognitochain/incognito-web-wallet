@@ -3,7 +3,7 @@ import {
   GET_BRIDGE_TOKENS,
   GET_BRIDGE_TOKENS_SUCCESS,
   GET_BRIDGE_TOKENS_FAILED,
-} from 'src/redux/actionTypes'
+} from 'src/redux/actionTypes';
 import PToken from 'src/models/pToken';
 
 export type PTokenState = {
@@ -35,7 +35,7 @@ actions[GET_BRIDGE_TOKENS_SUCCESS] = (state: PTokenState, action: ReduxAction) =
 actions[GET_BRIDGE_TOKENS_FAILED] = (state: PTokenState, action: ReduxAction) => ({
   ...state,
   getting: false,
-  error: action.error
+  error: action.error,
 });
 
 export default function (state = initialState, action: any) {

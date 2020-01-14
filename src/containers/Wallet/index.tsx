@@ -1,11 +1,9 @@
-import * as React from 'react'
+import * as React from 'react';
 
-const Wallet:React.FunctionComponent = () => {
-  return (
-    <div className="wallet">
+const Wallet:React.FunctionComponent = () => (
+  <div className="wallet">
       Wallet
-    </div>
-  )
-};
+  </div>
+);
 
 export default Wallet;

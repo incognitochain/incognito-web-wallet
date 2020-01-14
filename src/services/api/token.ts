@@ -13,7 +13,7 @@ type ChainTokenResponse = {
 export const getTokenList = () => {
   if (!getTokenPromise) {
     getTokenPromise = api.get<APIPToken[]>('ptoken/list')
-      .then(res => {
+      .then((res) => {
         getTokenPromise = null;
         return res.data.map((token: APIPToken) => new PToken(token));
       })
@@ -28,9 +28,7 @@ export const getTokenList = () => {
 export const getChainTokenList = () => {
   if (!getChainTokenPromise) {
     getChainTokenPromise = api.get<ChainTokenResponse>('/pcustomtoken/list-from-chain')
-      .then(res => {
-        return res.data.Tokens;
-      })
+      .then((res) => res.data.Tokens)
       .finally(() => {
         getChainTokenPromise = null;
       });

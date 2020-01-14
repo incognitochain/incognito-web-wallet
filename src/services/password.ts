@@ -18,7 +18,7 @@ export function getPassphrase(): string {
 
     pass = CryptoJS.AES.decrypt(
       pass,
-      CONSTANT_CONFIGS.PASSWORD_SECRET_KEY
+      CONSTANT_CONFIGS.PASSWORD_SECRET_KEY,
     ).toString(CryptoJS.enc.Utf8);
     const [password, expired] = pass.split(':');
     if (!password || !expired) return '';
@@ -37,7 +37,7 @@ export function savePassword(pass: string) {
     const expired = Date.now() + PASSWORD_DURATION_IN_MS;
     const toBeSaved = CryptoJS.AES.encrypt(
       `${pass}:${expired}`,
-      CONSTANT_CONFIGS.PASSWORD_SECRET_KEY
+      CONSTANT_CONFIGS.PASSWORD_SECRET_KEY,
     ).toString();
     return storage.setItem(CONSTANT_KEYS.PASSPHRASE_KEY, toBeSaved);
   } catch {

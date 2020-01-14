@@ -11,8 +11,8 @@ const instance = axios.create({
   timeout: TIMEOUT,
   headers: {
     ...HEADERS,
-    Authorization: ''
-  }
+    Authorization: '',
+  },
 });
 
 instance.interceptors.request.use((config: any) => {
@@ -21,12 +21,10 @@ instance.interceptors.request.use((config: any) => {
     ...config,
     headers: {
       ...config.headers,
-      'Authorization': 'Bearer ' + token,
-    }
+      Authorization: `Bearer ${token}`,
+    },
   };
-}, error => {
-  return Promise.reject(error);
-});
+}, (error) => Promise.reject(error));
 
 instance.interceptors.response.use((res: any): any => {
   res.data = res?.data?.Result;
@@ -36,9 +34,10 @@ instance.interceptors.response.use((res: any): any => {
   const originalRequest = errorData?.config;
 
   if (errResponse?.status === 401) {
+    // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve) => {
       const newToken = await login(true);
-      originalRequest.headers.Authorization = 'Bearer ' + newToken;
+      originalRequest.headers.Authorization = `Bearer ${newToken}`;
       storageService.setItem(CONSTANT_KEYS.DEVICE_TOKEN, newToken);
       resolve(instance(originalRequest));
     });

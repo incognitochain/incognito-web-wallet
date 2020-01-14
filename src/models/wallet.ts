@@ -1,19 +1,28 @@
+/* eslint-disable */
 import AccountWallet from './accountWallet';
 import WebJSAccount from './webJSAccount';
 
 class Wallet {
   Seed: [];
+
   Entropy: [];
+
   PassPhrase: string;
+
   Mnemonic: string;
+
   MasterAccount: AccountWallet;
 
   constructor() {
     this.Seed = [];
     this.Entropy = [];
-    this.PassPhrase = "";
-    this.Mnemonic = "";
+    this.PassPhrase = '';
+    this.Mnemonic = '';
     this.MasterAccount = new AccountWallet();
+  }
+
+  init(passPhrase: string, numOfAccount = 1, name = '') {
+
   }
 
   getAccountByName(accountName: string): AccountWallet | null {
@@ -45,6 +54,10 @@ class Wallet {
   }
 
   async loadAccountsCached(accName = null) {
+
+  }
+
+  save(pass: string) {
 
   }
 

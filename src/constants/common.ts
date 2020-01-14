@@ -5,7 +5,7 @@ const CRYPTO_SYMBOL = {
   BNB: 'BNB',
   USD: 'USD',
   KCS: 'KCS',
-  TOMO: 'TOMO'
+  TOMO: 'TOMO',
 };
 
 const TOKEN_SYMBOL = {
@@ -13,7 +13,7 @@ const TOKEN_SYMBOL = {
   pBTC: 'pBTC',
   pBNB: 'pBNB',
   pUSD: 'pUSD',
-  pKCS: 'pKCS'
+  pKCS: 'pKCS',
 };
 
 const TOKEN_ID = {
@@ -25,19 +25,19 @@ const TOKEN_ID = {
 const AMOUNT_MAX_FRACTION_DIGITS = 4;
 
 const TRACK_LOG_EVENT = {
-  CLICK_STAKING:'click_staking'
+  CLICK_STAKING: 'click_staking',
 };
 const TRACK_LOG_EVENT_STATUS = {
-  BEGIN:'INIT',
-  DOING:'DOING',
-  PASS:'PASS',
-  FAIL:'FAIL'
+  BEGIN: 'INIT',
+  DOING: 'DOING',
+  PASS: 'PASS',
+  FAIL: 'FAIL',
 };
 export default {
   // old varibles, maybe remove later
   STAKING_TYPES: {
     SHARD: 0,
-    BEACON: 1
+    BEACON: 1,
   },
   STAKING_AMOUNT: 200,
   STAKING_MIN_FEE: 0.01,
@@ -59,11 +59,11 @@ export default {
   },
   TOKEN_TX_TYPE: {
     INIT: 0,
-    SEND: 1
+    SEND: 1,
   },
   ADDRESS_TYPE: {
     DEPOSIT: 1,
-    WITHDRAW: 2
+    WITHDRAW: 2,
   },
   PRIVATE_TOKEN_CURRENCY_TYPE: {
     ETH: 1,
@@ -71,25 +71,25 @@ export default {
     ERC20: 3,
     BNB: 4,
     BNB_BEP2: 5,
-    USD: 6
+    USD: 6,
   },
   PRIVATE_TOKEN_TYPE: {
     COIN: 0,
-    TOKEN: 1 // including ERC20, BEP1, BEP2,...
+    TOKEN: 1, // including ERC20, BEP1, BEP2,...
   },
   HISTORY: {
     TYPE: {
       DEPOSIT: 1, // same with PRIVATE_TOKEN_HISTORY_ADDRESS_TYPE.DEPOSIT
       WITHDRAW: 2, // same with PRIVATE_TOKEN_HISTORY_ADDRESS_TYPE.WITHDRAW
       SEND: 3, // custom
-      RECEIVE: 4 // custom
+      RECEIVE: 4, // custom
     },
     STATUS_TEXT: {
       SUCCESS: 'SUCCESS',
       FAILED: 'FAILED',
       PENDING: 'PENDING',
-      EXPIRED: 'EXPIRED'
-    }
+      EXPIRED: 'EXPIRED',
+    },
   },
   TRACK_LOG_EVENT,
   TRACK_LOG_EVENT_STATUS,
