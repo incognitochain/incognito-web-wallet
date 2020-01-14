@@ -2,6 +2,7 @@ import WebJSAccount from './webJSAccount';
 
 class Account {
   name: string;
+  amount: number;
   paymentAddress: string;
   readonlyKey: string;
   privateKey: string;
@@ -21,6 +22,7 @@ class Account {
     this.publicKeyBytes = data?.PublicKeyBytes;
     this.blsPublicKey = data?.BLSPublicKey;
     this.validatorKey = data?.ValidatorKey;
+    this.amount = 0;
   }
 }
 

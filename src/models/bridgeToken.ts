@@ -1,11 +1,10 @@
 import ApiBridgeToken from './apiBridgeToken';
 
 class BridgeToken {
-  id: number;
+  id: string;
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-  tokenId: string;
   symbol: string;
   name: string;
   contractId: string;
@@ -19,11 +18,10 @@ class BridgeToken {
   currencyType: number;
 
   constructor(data: ApiBridgeToken) {
-    this.id = data.ID;
+    this.id = data.TokenID;
     this.createdAt = data.CreatedAt;
     this.updatedAt = data.UpdatedAt;
     this.deletedAt = data.DeletedAt;
-    this.tokenId = data.TokenID;
     this.symbol = data.Symbol;
     this.name = data.Name;
     this.contractId = data.ContractID;
