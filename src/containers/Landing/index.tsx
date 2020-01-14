@@ -3,6 +3,7 @@ import Header from 'src/components/Header';
 
 import styles from './index.module.scss';
 import Feature from './Feature';
+import SendCrypto from '../SendCrypto';
 
 type Props = {
   loading: boolean,
@@ -45,6 +46,7 @@ const Landing: React.FunctionComponent<Props> = () => (
           onClick={item.onClick}
         />
       ))}
+      <SendCrypto visible />
     </div>
   </div>
 );

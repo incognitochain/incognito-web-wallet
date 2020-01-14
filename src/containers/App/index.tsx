@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader/root';
 import Wallet from 'src/containers/Wallet';
 import Landing from 'src/containers/Landing';
 import loadWASM from 'src/services/wasm';
-import FullScreenLoading from 'src/components/Loading/FullScreenLoading';
+import { FullScreenLoading } from 'src/components';
 import { loadWalletAction } from 'src/redux/actions';
 import { RootState } from 'src/redux/reducers';
 import { connect } from 'react-redux';
@@ -26,8 +26,8 @@ const App:React.FunctionComponent<Props> = ({
   React.useEffect(() => {
     const loadWebAssembly = async () => {
       await loadWASM();
-      setLoadedWASM(true);
       loadWallet();
+      setLoadedWASM(true);
     };
 
     if (!wallet) {

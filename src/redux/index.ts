@@ -7,7 +7,8 @@ import reducer from './reducers';
 import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
-const middlewares = process.env.NODE_ENV === 'development'
+const env = process.env.NODE_ENV;
+const middlewares = env === 'development'
   ? composeWithDevTools(applyMiddleware(sagaMiddleware, logger))
   : applyMiddleware(sagaMiddleware);
 
